@@ -1,20 +1,22 @@
 package com.simbirsoft.intership.koeshov.entity;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "page")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Page extends BaseEntity {
 
     @Column(name = "url")
     private String url;
 
-    @OneToMany(mappedBy = "page")
-    private WordCount wordCount;
+    @OneToMany(mappedBy = "page", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<WordCount> wordCounts = new ArrayList<>();
 }

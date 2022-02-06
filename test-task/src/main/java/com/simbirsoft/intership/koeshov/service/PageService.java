@@ -1,10 +1,12 @@
 package com.simbirsoft.intership.koeshov.service;
 
-import com.simbirsoft.intership.koeshov.dto.PageDTO;
-import com.simbirsoft.intership.koeshov.dto.WordCountDTO;
+import com.simbirsoft.intership.koeshov.entity.Page;
+
+import java.io.IOException;
 
 public interface PageService {
 
-    WordCountDTO uniqueWodCount (PageDTO pageDTO);
+    Page uniqueWodCount (String url) throws IOException;
 
+    Page findById (Long id);
 }
