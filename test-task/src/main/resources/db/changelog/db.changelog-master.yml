@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: liquibase
+      changes:
+        - createTable:
+            tableName: PAGE
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: url
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: liquibase
+      changes:
+        - createTable:
+            tableName: WORD_COUNT
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: word
+                  type: varchar(200)
+              - column:
+                  name: count
+                  type: BIGINT
+              - column:
+                  name: page_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_page_id
+                    references: PAGE(id)
